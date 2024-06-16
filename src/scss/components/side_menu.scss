@@ -1,18 +1,19 @@
-/* Side-Menu ------------------------------------------------------------------ */
+@use '../utils/variables.scss' as *;
+
 .side-menu {
+    --menu-width: 300px;
     position: absolute;
     top: 0;
-    width: 300px;
+    right: 100%;
+    width: var(--menu-width);
     height: 100%;
-    background-color: red;
-    transition: ease-in-out 0.3;
+    background-color: $dark;
+    transition: 0.3s ease-in-out;
 
-    &-close {
-        right: 100%;
-    }
 
     &-open {
-        left: 0;
+        transform: translateX(var(--menu-width));
+        background-color: red;
     }    
 
     &-open-close-tab {
@@ -21,9 +22,6 @@
         top: 2rem;
         padding: 0.5rem 0.25rem;
         background-color: red;
+        cursor: pointer;
     }    
 }
-
-
-
-

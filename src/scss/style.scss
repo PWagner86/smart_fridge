@@ -1,0 +1,42 @@
+@use './utils/' as *;
+@use './components/' as *;
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    max-width: 2000px;
+    height: 100svh;
+    margin: 0 auto;
+    font-family: $mainFont;
+    background-color: $dark;
+    color: $light;
+    position: relative;
+    overflow: hidden;
+}
+
+h1,
+h2,
+h3 {
+    letter-spacing: 0.25rem;
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+
+
+
+
+
+

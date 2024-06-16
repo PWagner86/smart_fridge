@@ -1,0 +1,29 @@
+/* Side-Menu ------------------------------------------------------------------ */
+.side-menu {
+    position: absolute;
+    top: 0;
+    width: 300px;
+    height: 100%;
+    background-color: red;
+    transition: ease-in-out 0.3;
+
+    &-close {
+        right: 100%;
+    }
+
+    &-open {
+        left: 0;
+    }    
+
+    &-open-close-tab {
+        position: absolute;
+        left: 100%;
+        top: 2rem;
+        padding: 0.5rem 0.25rem;
+        background-color: red;
+    }    
+}
+
+
+
+

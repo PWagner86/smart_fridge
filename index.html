@@ -4,15 +4,169 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SmartFridge</title>
-    <link rel="stylesheet" href="./src/scss/main.scss">
-    <script type="module" src="./src/ts/main.ts"></script>
+    <link rel="stylesheet" href="./src/scss/style.scss">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script type="module" src="./src/ts/app.ts"></script>
   </head>
   <body>
-    <div class="test1">
-      <h1>test1</h1>
-    </div>
-    <div class="test2">
-      <h1>SmartFridge</h1>
-    </div>
+    
+    <!-- Header --------------------------------------------------------------->
+    <header class="header">
+
+      <!-- Titel ------------------------------------------------------------>
+      <div class="header-title-container">
+          <div class="header-title">
+              <h1>SmartFridge</h1>
+          </div>
+          <div class="header-logo">
+              <i class="fa-solid fa-snowflake"></i>
+          </div>
+      </div>
+
+      <!-- Zeit und Datum --------------------------------------------------->
+      <div class="header-time-container">
+          <h2 class="time">12:15</h2>
+          <h2 class="date">05.06.2024</h2>
+      </div>
+
+      <!-- Wetter ----------------------------------------------------------->
+      <div class="header-weather-container">
+          <i class="fa-solid fa-cloud-sun"></i>
+      </div>
+  </header>
+
+  <!-- Side-Menu ----------------------------------------------------------------->
+  <aside class="side-menu side-menu-close">
+    <div class="side-menu-open-close-tab">open</div>
+
+  </aside>
+
+  <!-- Main ----------------------------------------------------------------->
+  <main class="main">
+
+      <!-- Frigde-Status ---------------------------------------------------->
+      <div class="fridge-status main-frame">
+          <div class="fridge"></div>
+          <div class="fridge-temp">
+              <div class="frigde">
+                  <i class="fa-solid fa-temperature-half"></i>
+                  <p class="temp">4°</p>
+              </div>
+              <div class="freezer">
+                  <i class="fa-solid fa-temperature-half"></i>
+                  <p class="temp">-8°</p>
+              </div>
+              <div class="status">
+                  <ul class="status-list">
+                      <li class="status-list-item">
+                          Fridge: Online
+                      </li>
+                      <li class="status-list-item">
+                          Freezer: Online
+                      </li>
+                      <li class="status-list-item">
+                          Kapazität: 55 / 120
+                      </li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+
+      <!-- Shopping-Liste ---------------------------------------------------->
+      <div class="shopping-list-container main-frame">
+          <h2 class="shopping-list-title">Shopping-List</h2>
+          <ul class="shopping-list">
+              <li class="shopping-list-item">Milch</li>
+              <li class="shopping-list-item">Butter</li>
+              <li class="shopping-list-item">Karotten</li>
+              <li class="shopping-list-item">Rivella</li>
+          </ul>
+      </div>
+
+      <!-- News -------------------------------------------------------------->
+      <div class="news-container main-frame">
+          <h2 class="news-title">News</h2>
+          <p class="news-text">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit repudiandae quaerat, 
+              iusto id pariatur sed aspernatur placeat 
+          </p>
+      </div>
+
+      <!-- Service ----------------------------------------------------------->
+      <div class="service-container main-frame">
+          <h2 class="service-title">Service</h2>
+          <ul class="service-status-list">
+              <li class="service-status-list-item">Letzter Service: 01.01.2024</li>
+              <li class="service-status-list-item">Nächster Service: 01.01.2027</li>
+              <li class="service-status-list-item">Version: 1.65</li>
+          </ul>
+          <ul class="service-components-list">
+              <li class="service-components-list-item">
+                  <span class="component-name">Comp1:</span>    
+                  <div class="component-bar"></div>
+              </li>
+              <li class="service-components-list-item">
+                  <span class="component-name">Comp2:</span>    
+                  <div class="component-bar"></div>
+              </li>
+              <li class="service-components-list-item">
+                  <span class="component-name">Comp3:</span>
+                  <div class="component-bar"></div>
+              </li>
+          </ul>
+      </div>
+
+      <!-- Verlauf ----------------------------------------------------------->
+      <div class="history-container main-frame">
+          <h2 class="history-title">Verlauf</h2>
+          <div class="history-out history-list-container">
+              <h3 class="history-title-in history-list-title">Raus:</h3>
+              <ul class="history-list-in history-list">
+                  <li class="history-list-item">Bier: 31.05.2024 um 18:30</li>
+                  <li class="history-list-item">Chicken: 01.06.2024 um 11:45</li>
+                  <li class="history-list-item">Milch: 04.06.2024 um 07:30</li>
+              </ul>
+          </div>
+          <div class="history-in history-list-container">
+              <h3 class="history-title-in history-list-title">Rein:</h3>
+              <ul class="history-list-in history-list">
+                  <li class="history-list-item">Bier: 31.05.2024 um 18:30</li>
+                  <li class="history-list-item">Chicken: 01.06.2024 um 11:45</li>
+                  <li class="history-list-item">Milch: 04.06.2024 um 07:30</li>
+              </ul>
+          </div>
+      </div>
+
+      <!-- Rezepte ----------------------------------------------------------->
+      <div class="recipe-container main-frame">
+          <h2 class="recipe-title">Rezepte</h2>
+          <ul class="recipe-list">
+              <li class="recipe-list-item">Kartoffelauflauf</li>
+              <li class="recipe-list-item">Gemüsesuppe</li>
+              <li class="recipe-list-item">Schokokuchen</li>
+          </ul>
+      </div>
+
+      <!-- App-Store ----------------------------------------------------------->
+      <div class="app-store-container main-frame">
+          <h2 class="app-store-title">App-Store</h2>
+          <ul class="app-list">
+              <li class="app-list-item"></li>
+              <li class="app-list-item"></li>
+              <li class="app-list-item"></li>
+              <li class="app-list-item"></li>
+              <li class="app-list-item"></li>
+              <li class="app-list-item"></li>
+              <li class="app-list-item"></li>
+              <li class="app-list-item"></li>
+              <li class="app-list-item"></li>
+              <li class="app-list-item"></li>
+              <li class="app-list-item"></li>
+              <li class="app-list-item"></li>
+          </ul>
+      </div>
+
+  </main>
+
   </body>
 </html>

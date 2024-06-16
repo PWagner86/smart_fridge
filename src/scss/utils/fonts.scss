@@ -1,0 +1,8 @@
+@use './variables.scss' as *;
+
+@font-face {
+    font-family: $mainFont;
+    src:
+        local($mainFont), 
+        url("../../../public/fonts/Montserrat-Regular.ttf") format("ttf");
+}

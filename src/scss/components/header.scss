@@ -1,0 +1,50 @@
+
+
+.header {
+    height: 10%;
+    width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-areas: "main-title time weather";
+    grid-template-columns: 4fr 1fr 1fr;
+
+    &-title-container {
+        width: 100%;
+        display: flex;
+    }
+    
+    &-title {
+        display: flex;
+        align-items: center;
+    }
+    
+    &-logo {
+        display: flex;
+        align-items: center;
+
+        .fa-snowflake {
+            margin-left: 3rem;
+            font-size: 3rem;
+        }
+    }
+
+    &-time-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    &-time-container h2 {
+        padding: 0.15rem;
+    }
+    
+    &-weather-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+                
+        .fa-cloud-sun {
+            font-size: 3rem;
+        }
+    }
+}

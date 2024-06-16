@@ -8,7 +8,6 @@ export default class SideMenu {
         this.sideMenu = document.querySelector('[data-side-menu]') as HTMLElement;
         this.openCloseTab = document.querySelector('[data-side-menu-open-close-tab]') as HTMLDivElement;
 
-        this.sideMenu.addEventListener('click', () => this.openClose());
     }
 
     private openClose() {
@@ -21,5 +20,9 @@ export default class SideMenu {
             this.openCloseTab.innerHTML = '';
             this.openCloseTab.innerHTML = 'Open';
         }
+    }
+
+    public addEventListeners() {
+        this.sideMenu.addEventListener('click', () => this.openClose());
     }
 }

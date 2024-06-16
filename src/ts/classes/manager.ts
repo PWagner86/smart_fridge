@@ -19,5 +19,6 @@ export default class Manager {
     public init() {
         console.log('SmartFridge started...');
         this.clock.showDate(this.clockText, this.dateText);
+        this.sideMenu.addEventListeners();
     }
 }

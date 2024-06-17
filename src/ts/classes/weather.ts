@@ -43,6 +43,7 @@ export default class Weather {
             this.setIcon(icon);
         } catch(error) {
             console.error(error);
+            this.weatherContainer.innerHTML = 'No Data';
         }
     }
 

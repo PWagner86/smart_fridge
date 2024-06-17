@@ -52,19 +52,40 @@ export default class Weather {
         const className: string = 'header-weather-container-icon';
 
         switch(weatherCode) {
-            case 0 || 1:
+            case 0:
+            case 1:
                 return `<i class="${className} fa-solid fa-sun"></i>`;
             case 2:
                 return `<i class="${className} fa-solid fa-cloud-sun"></i>`;
             case 3:
                 return `<i class="${className} fa-solid fa-cloud"></i>`;
-            case 45 || 48:
+            case 45:
+            case 48:
                 return `<i class="${className} fa-solid fa-smog"></i>`;
-            case 51|| 53 || 55 || 56 || 57 || 61 || 63 || 65 || 66 || 67 || 80 || 81 || 82:
+            case 51:
+            case 53:
+            case 55:
+            case 56:
+            case 57:
+            case 61:
+            case 63:
+            case 65:
+            case 66:
+            case 67:
+            case 80:
+            case 81:
+            case 82:
                 return `<i class="${className} fa-solid fa-cloud-showers-heavy"></i>`;
-            case 71 || 73 || 75 || 77 || 85 || 86:
+            case 71:
+            case 73:
+            case 75:
+            case 77:
+            case 85:
+            case 86:
                 return `<i class="${className} fa-solid fa-snowflake"></i>`;
-            case 95 || 96 || 99:
+            case 95:
+            case 96:
+            case 99:
                 return `<i class="${className} fa-solid fa-cloud-bolt"></i>`;
             default:
                 return `<i class="${className} fa-solid fa-sun"></i>`;

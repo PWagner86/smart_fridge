@@ -15,9 +15,7 @@ export default class Weather {
             navigator.geolocation.getCurrentPosition(position => {
                 const location: Location = this.getLatLon(position);
                 const url: string = this.formatURL(location.lat, location.lon);
-                const iconCode = this.fetchData(url);
-                const icon: string = this.getIcon(iconCode);
-                this.setIcon(icon);
+                this.fetchData(url);
             });
         } else {
             alert('Geolocation is not alowed');
@@ -39,8 +37,10 @@ export default class Weather {
         try {
             const response = await fetch(url);
             const json = await response.json();
-            const icon: number = json.hourly.weather_code[0];
-            return icon;
+            console.log(json);
+            const iconCode: number = json.hourly.weather_code[0];
+            const icon = this.getIcon(iconCode);
+            this.setIcon(icon);
         } catch(error) {
             console.error(error);
         }
@@ -71,6 +71,7 @@ export default class Weather {
     }
 
     private setIcon(icon: string) {
+        this.weatherContainer.innerHTML = '';
         this.weatherContainer.innerHTML = icon;
     }
 }

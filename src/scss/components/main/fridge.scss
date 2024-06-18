@@ -1,0 +1,20 @@
+.fridge {
+    grid-area: fridge-status;
+    display: flex;
+
+    &-screen {
+        height: 100%;
+        width: 60%;
+    }
+
+    &-temp {
+        height: 100%;
+        width: 40%;
+        margin: 0 0.5rem;
+
+        > div {
+            display: flex;
+        }
+    }
+}
+

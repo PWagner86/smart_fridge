@@ -30,7 +30,7 @@ export default class Weather {
     }
 
     private formatURL(lat: string, lon: string): string {
-        return `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=temperature_2m,weather_code&daily=weather_code&timezone=GMT`;
+        return `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}1&current=temperature_2m,weather_code&timezone=Europe%2FBerlin`;
     }
 
     private async fetchData(url: string) {
@@ -38,9 +38,10 @@ export default class Weather {
             const response = await fetch(url);
             const json = await response.json();
             console.log(json);
-            const iconCode: number = json.hourly.weather_code[0];
-            const icon = this.getIcon(iconCode);
-            this.setIcon(icon);
+            const iconCode: number = json.current.weather_code;
+            const temp: string = `${Math.floor(json.current.temperature_2m)}°C`;
+            const icon: string = this.getIcon(iconCode);
+            this.setIcon(temp, icon);
         } catch(error) {
             console.error(error);
             this.setIcon('No Data');
@@ -92,8 +93,8 @@ export default class Weather {
         }
     }
 
-    private setIcon(icon: string) {
+    private setIcon(temp: string = '', icon: string = '',) {
         this.weatherContainer.innerHTML = '';
-        this.weatherContainer.innerHTML = icon;
+        this.weatherContainer.innerHTML = `<h2>${temp}</h2> ${icon} `;
     }
 }

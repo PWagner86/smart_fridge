@@ -6,7 +6,7 @@
     margin: 0 auto;
     display: grid;
     grid-template-areas: "main-title time weather";
-    grid-template-columns: 4fr 1fr 1fr;
+    grid-template-columns: 4fr 1fr 2fr;
 
     &-title-container {
         width: 100%;
@@ -45,6 +45,7 @@
                 
         &-icon {
             font-size: 3rem;
+            margin-left: 1rem;
         }
     }
 }

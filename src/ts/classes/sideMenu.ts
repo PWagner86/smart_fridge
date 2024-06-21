@@ -23,6 +23,6 @@ export default class SideMenu {
     }
 
     public addEventListeners() {
-        this.sideMenu.addEventListener('click', () => this.openClose());
+        this.openCloseTab.addEventListener('click', () => this.openClose());
     }
 }

@@ -13,7 +13,7 @@ export default class Manager {
     constructor(
 
         private clockText: HTMLHeadingElement,
-        private dateText: HTMLHeadingElement
+        private dateText: HTMLHeadingElement,
 
         ) {
 

@@ -28,5 +28,6 @@ export default class Manager {
         this.clock.showDate(this.clockText, this.dateText);
         this.weather.setWeatherIcon();
         this.sideMenu.addEventListeners();
+        this.fridge.initFridge();
     }
 }

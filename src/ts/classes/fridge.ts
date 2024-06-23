@@ -39,19 +39,13 @@ export default class Fridge {
         this.loader = new OBJLoader();
 
         this.hemiLight = new THREE.HemisphereLight(0xffffbb, 0x080820, 3);
-        this.scene.add(this.hemiLight);
 
         this.dirLight = new THREE.DirectionalLight(0xffffff, 0.5);
         this.dirLight.position.set(5, 10, 20)
         this.dirLight.castShadow = true;
         this.dirLight.receiveShadow = true;
-        this.scene.add(this.dirLight);
 
-        this.loadFridge();
 
-        console.log(this.scene);
-
-        this.animate();
     }
 
     private loadFridge() {
@@ -82,5 +76,11 @@ export default class Fridge {
             this.renderer.render( this.scene, this.camera );
             this.animate();
         });
+    }
+
+    public initFridge() {
+        this.scene.add(this.hemiLight, this.dirLight);
+        this.loadFridge();
+        this.animate();
     }
 }

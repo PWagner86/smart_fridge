@@ -37,19 +37,29 @@ export default class SideMenu {
     this.openCloseTab.addEventListener("click", () => this.openClose());
     document.querySelector('[data-item-add]')?.addEventListener("click", () => this.addItem(input.value));
     document.querySelector('[data-item-remove]')?.addEventListener("click", () => this.addItem(input.value));
-    const addButtons = [...document.querySelectorAll('[data="add-button"]')] as Array<HTMLButtonElement>;
-    // addButtons.forEach(button => {
-    //     button.addEventListener('click', (e: Event) => {
-    //         const parent: HTMLLIElement = e.target.parentElement;
-    //         console.log(parent);
-    //     });
-    // })
   }
 
   private setCapacity() {
     const capacity = document.querySelector("[data-capacity]") as HTMLLIElement;
     capacity.innerHTML = "";
     capacity.innerHTML = `Kapazität: <span>${this.countItems()} / 120</span>`;
+  }
+
+  private plusItem(e: any){
+    const id: number = e.target.parentElement.getAttribute("data-id");
+    fridgeItems[id].amount++;
+    this.populateList();
+    this.setCapacity();
+  }
+
+  private minusItem(e: any) {
+    const id: number = e.target.parentElement.getAttribute("data-id");
+    fridgeItems[id].amount--;
+    if(fridgeItems[id].amount == 0) {
+      fridgeItems.splice(id, 1);
+    }
+    this.populateList();
+    this.setCapacity();
   }
 
   private addItem(inputItem: string) {
@@ -67,8 +77,8 @@ export default class SideMenu {
 
   private populateList() {
     this.uList.innerHTML = '';
-    fridgeItems.forEach((item) => {
-      const li: HTMLLIElement = this.createItem(item.name, item.amount);
+    fridgeItems.forEach((item, index) => {
+      const li: HTMLLIElement = this.createItem(index, item.name, item.amount);
       this.uList.append(li);
     });
   }
@@ -78,19 +88,25 @@ export default class SideMenu {
     return fridgeItems.reduce((acc, curr) => acc + curr.amount, 0);
   }
 
-  private createItem(name: string, amount: number = 1) {
+  private createItem(id: number, name: string, amount: number = 1) {
     const li = document.createElement("li") as HTMLLIElement;
     li.setAttribute("data", "item-list-item");
+    li.setAttribute("data-id", `${id}`);
     li.classList.add("item-list-item");
 
     const addButton = document.createElement('button') as HTMLButtonElement;
+    addButton.classList.add('add-button');
     addButton.setAttribute("data", "add-button");
     addButton.innerHTML = '+';
+    addButton.addEventListener('click', (e) => this.plusItem(e));
+
     const removeButton = document.createElement('button') as HTMLButtonElement;
+    removeButton.classList.add('remove-button');
     removeButton.setAttribute("data", "remove-button");
     removeButton.innerHTML = '-';
+    removeButton.addEventListener('click', (e) => this.minusItem(e));
 
-    li.innerHTML = `${amount} x ${name}`;
+    li.innerHTML = `<div>${amount} x ${name}</div>`;
     li.append(addButton, removeButton);
     return li;
   }

@@ -34,8 +34,8 @@
         &-in-out-container {
             display: grid;
             grid-template-areas: 
-                "item-input item-input"
-                "item-add item-remove";
+                "item-input"
+                "item-add";
         }
 
         &-input {
@@ -46,9 +46,30 @@
             grid-area: item-add;
         }
 
-        &-remove {
-            grid-area: item-remove;
+        &-list {
+            width: 100%;
         }
+
+        &-list-item {
+            width: 100%;
+            display: grid;
+            grid-template-areas: 
+            "div add-btn remove-btn";
+            grid-template-columns: 60% 20% 20%;
+
+            div {
+                grid-area: div;
+            }
+
+            .add-button {
+                grid-area: add-btn;
+            }
+
+            .remove-button {
+                grid-area: remove-btn;
+            }
+        }
+
     
     }
     

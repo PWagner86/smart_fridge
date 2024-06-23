@@ -7,6 +7,7 @@ export default class SideMenu {
   private uList: HTMLUListElement;
   private itemList: Array<HTMLLIElement>;
   private list: Array<string>;
+  private MAXCAP: number
 
   constructor() {
     this.sideMenu = document.querySelector("[data-side-menu]") as HTMLElement;
@@ -15,6 +16,7 @@ export default class SideMenu {
     this.itemList = [...document.querySelectorAll("[data-item-list-item]"),] as Array<HTMLLIElement>;
     this.list = [];
     this.itemList.forEach((item) => this.list.push(item.innerText));
+    this.MAXCAP = 120;
 
     this.populateList();
     this.setCapacity();
@@ -36,17 +38,33 @@ export default class SideMenu {
     const input = document.querySelector('[data-item-input]') as HTMLInputElement;
     this.openCloseTab.addEventListener("click", () => this.openClose());
     document.querySelector('[data-item-add]')?.addEventListener("click", () => this.addItem(input.value));
-    document.querySelector('[data-item-remove]')?.addEventListener("click", () => this.addItem(input.value));
   }
 
   private setCapacity() {
+    let count: number = this.countItems();
     const capacity = document.querySelector("[data-capacity]") as HTMLLIElement;
-    capacity.innerHTML = "";
-    capacity.innerHTML = `Kapazität: <span>${this.countItems()} / 120</span>`;
+    if(count <= 100) {
+      capacity.innerHTML = "";
+      capacity.innerHTML = `Kapazität: <span class="good">${count} / ${this.MAXCAP}</span>`;  
+    } else if(count > 100 && count <= 110) {
+      capacity.innerHTML = "";
+      capacity.innerHTML = `Kapazität: <span class="warning">${count} / ${this.MAXCAP}</span>`;  
+    } else if(count > 110 && count < 120) {
+      capacity.innerHTML = "";
+      capacity.innerHTML = `Kapazität: <span class="danger">${count} / ${this.MAXCAP}</span>`;  
+    } else {
+      count = this.MAXCAP;
+      capacity.innerHTML = "";
+      capacity.innerHTML = `Kapazität: <span class="danger">${count} / ${this.MAXCAP}</span>`;  
+    }
   }
 
   private plusItem(e: any){
     const id: number = e.target.parentElement.getAttribute("data-id");
+    const count: number = this.countItems();
+    if(count === this.MAXCAP){
+      return;
+    }
     fridgeItems[id].amount++;
     this.populateList();
     this.setCapacity();
@@ -63,9 +81,9 @@ export default class SideMenu {
   }
 
   private addItem(inputItem: string) {
-
+    const count: number = this.countItems();
     const item: FridgeItem | undefined = fridgeItems.find(item => item.name == inputItem );
-
+    if(count === this.MAXCAP) return;
     if(item == undefined) {
         fridgeItems.push({name: inputItem, amount: 1});
     } else {

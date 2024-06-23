@@ -13,7 +13,7 @@
 
     &-open {
         transform: translateX(var(--menu-width));
-        background-color: red;
+        background-color: $medium;
     }    
 
     &-open-close-tab {
@@ -21,7 +21,7 @@
         left: 100%;
         top: 2rem;
         padding: 0.5rem 0.25rem;
-        background-color: red;
+        background-color: $medium;
         cursor: pointer;
     }
     
@@ -40,10 +40,25 @@
 
         &-input {
             grid-area: item-input;
+            background-color: $dark;
+            color: $light;
+            font-weight: bold;
+            border-radius: 0.25rem;
+            padding: 0.5rem;
         }
 
         &-add {
             grid-area: item-add;
+            background-color: $good;
+            border-radius: 0.25rem;
+            font-weight: bold;
+            padding: 0.5rem;
+            margin: 1rem 0;
+            transition: box-shadow ease-in-out 0.1s;
+
+            &:hover {
+                box-shadow: 1rem 1rem 1rem $dark;
+            }
         }
 
         &-list {
@@ -63,11 +78,18 @@
 
             .add-button {
                 grid-area: add-btn;
+                margin: 0.1rem;
+                background-color: $good;
+                font-weight: bold;
             }
 
             .remove-button {
                 grid-area: remove-btn;
+                margin: 0.1rem;
+                background-color: $danger;
+                font-weight: bold;
             }
+            
         }
 
     

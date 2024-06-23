@@ -36,7 +36,12 @@ li {
 
 button,
 input {
+    border: none;
     font: inherit;
+}
+
+button {
+    cursor: pointer;
 }
 
 

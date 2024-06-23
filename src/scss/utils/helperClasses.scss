@@ -1,0 +1,16 @@
+@use './variables.scss' as *;
+
+.good {
+    color: $good;
+    font-weight: bold;
+}
+
+.warning {
+    color: $warning;
+    font-weight: bold;
+}
+
+.danger {
+    color: $danger;
+    font-weight: bold;
+}

@@ -28,12 +28,4 @@ export const fridgeItems: Array<FridgeItem> = [
 
 ];
 
-// export const fridgeItems: Array<string> = [
-//     'Milch',
-//     'Rahm',
-//     'Eier',
-//     'Salar',
-//     'Wurst'
-// ];
-
 

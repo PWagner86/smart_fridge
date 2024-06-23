@@ -10,10 +10,58 @@
     &-temp {
         height: 100%;
         width: 40%;
-        margin: 0 0.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
 
         > div {
             display: flex;
+        }
+    }
+
+
+
+    .temp-info {
+        display: grid;
+        grid-template-areas: 
+            "temp-title temp-title"
+            "temp-icon temp-temp";
+        
+        h3 {
+            grid-area: temp-title;
+            margin-bottom: 1rem;
+        }
+
+        i {
+            grid-area: temp-icon;
+            font-size: 3rem;
+            color: #00a2ff
+        }
+
+        p {
+            grid-area: temp-temp;
+            font-weight: bold;
+            font-size: 2rem;
+            margin-left: 1rem;
+        }
+    }
+
+    &-status {
+        width: 100%;
+        margin-left: 0.5rem;
+
+        ul {
+            width: 100%;
+        }
+        li {
+            display: flex;
+            justify-content: space-between;
+
+            span {
+                color: #7eff7e;
+                font-weight: bold;
+            }
         }
     }
 }

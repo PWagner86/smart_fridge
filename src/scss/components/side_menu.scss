@@ -23,5 +23,33 @@
         padding: 0.5rem 0.25rem;
         background-color: red;
         cursor: pointer;
-    }    
+    }
+    
+    .item {
+        &-management-container {
+            margin: 0 0.5rem;
+            
+        }
+
+        &-in-out-container {
+            display: grid;
+            grid-template-areas: 
+                "item-input item-input"
+                "item-add item-remove";
+        }
+
+        &-input {
+            grid-area: item-input;
+        }
+
+        &-add {
+            grid-area: item-add;
+        }
+
+        &-remove {
+            grid-area: item-remove;
+        }
+    
+    }
+    
 }

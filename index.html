@@ -36,10 +36,18 @@
   </header>
 
   <!-- Side-Menu ----------------------------------------------------------------->
-  <nav class="side-menu" data-side-menu>
+  <nav class="side-menu side-menu-open" data-side-menu>
     <div class="side-menu-open-close-tab" data-side-menu-open-close-tab>Open</div>
-    <input type="text" name="" id="">
+    <div class="item-management-container">
+        <div class="item-in-out-container">
+            <input class="item-input" type="text" placeholder="Item eingeben" data-item-input>
+            <button class="item-add item-button" data-item-add>Hinzufügen</button>
+            <button class="item-remove item-button" data-item-remove>Entfernen</button>
+            <ul class="item-list" data-item-list>
+            </ul>
+        </div>
 
+    </div>
   </nav>
 
   <!-- Main ----------------------------------------------------------------->
@@ -67,8 +75,8 @@
                       <li class="fridge-status-list-item">
                           Freezer: <span>Online</span>
                       </li>
-                      <li class="fridge-status-list-item">
-                          Kapazität: <span>55 / 120</span>
+                      <li class="fridge-status-list-item" data-capacity>
+                          <!-- Kapazität: <span>55 / 120</span> -->
                       </li>
                   </ul>
               </div>

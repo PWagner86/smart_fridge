@@ -81,6 +81,7 @@ export default class SideMenu {
   }
 
   private addItem(inputItem: string) {
+    if(inputItem == '') return;
     const count: number = this.countItems();
     const item: FridgeItem | undefined = fridgeItems.find(item => item.name == inputItem );
     if(count === this.MAXCAP) return;

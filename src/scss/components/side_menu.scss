@@ -23,6 +23,11 @@
         padding: 0.5rem 0.25rem;
         background-color: $medium;
         cursor: pointer;
+        transition: font-weight ease-in-out 0.1s;
+
+        &:hover {
+            font-weight: bold;
+        }
     }
     
     .item {
@@ -43,21 +48,29 @@
             background-color: $dark;
             color: $light;
             font-weight: bold;
+            text-align: center;
             border-radius: 0.25rem;
             padding: 0.5rem;
+            margin-top: 1rem;
         }
 
         &-add {
             grid-area: item-add;
-            background-color: $good;
+            background-color: $dark;
             border-radius: 0.25rem;
+            color: $good;
             font-weight: bold;
             padding: 0.5rem;
             margin: 1rem 0;
-            transition: box-shadow ease-in-out 0.1s;
+            border: solid 1px $good;
+            transition: ease-in-out 0.1s;
+
 
             &:hover {
-                box-shadow: 1rem 1rem 1rem $dark;
+                border-color: $dark;
+                background-color: $good;
+                color: $dark;
+
             }
         }
 
@@ -79,20 +92,35 @@
             .add-button {
                 grid-area: add-btn;
                 margin: 0.1rem;
-                background-color: $good;
+                background-color: $dark;
+                color: $good;
                 font-weight: bold;
+                border: solid 1px $good;
+                transition: ease-in-out 0.1s;
+    
+
+                &:hover {
+                    border-color: $dark;
+                    background-color: $good;
+                    color: $dark;    
+                }
             }
 
             .remove-button {
                 grid-area: remove-btn;
                 margin: 0.1rem;
-                background-color: $danger;
+                background-color: $dark;
+                color: $danger;
                 font-weight: bold;
-            }
-            
-        }
+                border: solid 1px $danger;
+                transition: ease-in-out 0.1s;
 
-    
+                &:hover {
+                    border-color: $dark;
+                    background-color: $danger;
+                    color: $dark;    
+                }
+            }
+        }
     }
-    
 }

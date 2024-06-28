@@ -1,5 +1,6 @@
 import { fridgeItems } from "../utils/fridgeItems";
 import { FridgeItem } from "../utils/types";
+import ShoppingList from "./shoppingList";
 
 export default class SideMenu {
   private sideMenu: HTMLElement;
@@ -8,6 +9,7 @@ export default class SideMenu {
   private itemList: Array<HTMLLIElement>;
   private list: Array<string>;
   private MAXCAP: number
+  private shoppingList: ShoppingList;
 
   constructor() {
     this.sideMenu = document.querySelector("[data-side-menu]") as HTMLElement;
@@ -17,6 +19,7 @@ export default class SideMenu {
     this.list = [];
     this.itemList.forEach((item) => this.list.push(item.innerText));
     this.MAXCAP = 120;
+    this.shoppingList = new ShoppingList();
 
     this.populateList();
     this.setCapacity();
@@ -74,6 +77,7 @@ export default class SideMenu {
     const id: number = e.target.parentElement.getAttribute("data-id");
     fridgeItems[id].amount--;
     if(fridgeItems[id].amount == 0) {
+      this.shoppingList.addItem(fridgeItems[id].name);
       fridgeItems.splice(id, 1);
     }
     this.populateList();

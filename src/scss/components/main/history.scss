@@ -1,3 +1,44 @@
-.history-container {
-    grid-area: history;
+@use '../../utils/' as *;
+
+.history {
+
+    &-container {
+        grid-area: history;
+        display: grid;
+        grid-template-areas: 
+            "history-title history-title"
+            "list list";
+        grid-template-rows: 1fr 3fr;
+    }
+
+    &-title {
+        grid-area: history-title;
+    }
+
+    &-list-container {
+        grid-area: list;
+    }
+
+    &-list-item {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr) 2fr;
+
+
+        &-in {
+            
+            i {
+                color: $good;
+                text-align: center;
+            }
+        }
+
+        &-out {
+
+            i {
+                color: $danger;
+                text-align: center;
+            }
+        }
+    }
 }
+

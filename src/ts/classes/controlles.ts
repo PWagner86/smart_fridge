@@ -1,8 +1,9 @@
 import { fridgeItems } from "../utils/fridgeItems";
 import { FridgeItem } from "../utils/types";
 import ShoppingList from "./shoppingList";
+import History from "./history";
 
-export default class SideMenu {
+export default class Controlles {
   private sideMenu: HTMLElement;
   private openCloseTab: HTMLDivElement;
   private uList: HTMLUListElement;
@@ -10,6 +11,7 @@ export default class SideMenu {
   private list: Array<string>;
   private MAXCAP: number
   private shoppingList: ShoppingList;
+  private history: History;
 
   constructor() {
     this.sideMenu = document.querySelector("[data-side-menu]") as HTMLElement;
@@ -20,6 +22,7 @@ export default class SideMenu {
     this.itemList.forEach((item) => this.list.push(item.innerText));
     this.MAXCAP = 120;
     this.shoppingList = new ShoppingList();
+    this.history = new History();
 
     this.populateList();
     this.setCapacity();
@@ -40,7 +43,10 @@ export default class SideMenu {
   public addEventListeners() {
     const input = document.querySelector('[data-item-input]') as HTMLInputElement;
     this.openCloseTab.addEventListener("click", () => this.openClose());
-    document.querySelector('[data-item-add]')?.addEventListener("click", () => this.addItem(input.value));
+    document.querySelector('[data-item-add]')?.addEventListener("click", () => {
+      this.addItem(input.value);
+      this.history.addToFridge(input.value);
+    });
   }
 
   private setCapacity() {
@@ -70,6 +76,7 @@ export default class SideMenu {
     }
     fridgeItems[id].amount++;
     this.populateList();
+    this.history.addToFridge(fridgeItems[id].name);
     this.setCapacity();
   }
 
@@ -78,6 +85,7 @@ export default class SideMenu {
     fridgeItems[id].amount--;
     if(fridgeItems[id].amount == 0) {
       this.shoppingList.addItem(fridgeItems[id].name);
+      this.history.removeFromFridge(fridgeItems[id].name);
       fridgeItems.splice(id, 1);
     }
     this.populateList();

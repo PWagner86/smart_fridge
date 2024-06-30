@@ -33,7 +33,6 @@
     .item {
         &-management-container {
             margin: 0 0.5rem;
-            
         }
 
         &-in-out-container {
@@ -121,6 +120,16 @@
                     color: $dark;    
                 }
             }
+        }
+    }
+
+    .service-management-container {
+        margin: 1rem 0.5rem;
+
+        label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
     }
 }

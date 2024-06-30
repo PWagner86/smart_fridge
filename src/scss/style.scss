@@ -44,6 +44,20 @@ button {
     cursor: pointer;
 }
 
+label {
+    display: block;
+}
+
+select {
+    font: inherit;
+    font-weight: bold;
+    background-color: $dark;
+    color: $light;
+    padding: 0.25rem;
+    border: none;
+    margin: 0.25rem 0;
+}
+
 
 
 

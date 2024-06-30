@@ -36,7 +36,7 @@
   </header>
 
   <!-- Side-Menu ----------------------------------------------------------------->
-  <nav class="side-menu" data-side-menu>
+  <nav class="side-menu side-menu-open" data-side-menu>
     <div class="side-menu-open-close-tab" data-side-menu-open-close-tab>Open</div>
     <div class="item-management-container">
         <div class="item-in-out-container">
@@ -45,8 +45,40 @@
             <ul class="item-list" data-item-list>
             </ul>
         </div>
-
     </div>
+    <div class="service-management-container">
+        <label for="filter-comp">
+            Filter:
+            <select name="filter-comp" data-filter-comp data-comp-name="Filter">
+                <option value="0">0%</option>
+                <option value="25" selected>25%</option>
+                <option value="50">50%</option>
+                <option value="75">75%</option>
+                <option value="100">100%</option>
+            </select>
+        </label>
+        <label for="kompressor-comp">
+            Kompressor:
+            <select name="kompressor-comp" data-kompressor-comp data-comp-name="Kompressor">
+                <option value="0">0%</option>
+                <option value="25">25%</option>
+                <option value="50">50%</option>
+                <option value="75" selected>75%</option>
+                <option value="100">100%</option>
+            </select>
+        </label>
+        <label for="drossel-comp">
+            Drossel:
+            <select name="drossel-comp" data-drossel-comp data-comp-name="Drossel">
+                <option value="0">0%</option>
+                <option value="25">25%</option>
+                <option value="50" selected>50%</option>
+                <option value="75">75%</option>
+                <option value="100">100%</option>
+            </select>
+        </label>
+    </div>
+
   </nav>
 
   <!-- Main ----------------------------------------------------------------->
@@ -110,15 +142,15 @@
           <ul class="service-components-list">
               <li class="service-components-list-item">
                   <span class="component-name">Filter:</span>    
-                  <div class="component-bar"><div class="filter">25%</div></div>
+                  <div class="component-bar"><div class="filter" data-filter></div><span class="filter-count" data-filter-count>25%</span></div>
               </li>
               <li class="service-components-list-item">
                   <span class="component-name">Kompressor:</span>    
-                  <div class="component-bar"><div class="kompressor">75%</div></div>
+                  <div class="component-bar"><div class="kompressor" data-kompressor></div><span class="kompressor-count" data-kompressor-count>75%</span></div>
               </li>
               <li class="service-components-list-item">
                   <span class="component-name">Drossel:</span>
-                  <div class="component-bar"><div class="drossel">50%</div></div>
+                  <div class="component-bar"><div class="drossel" data-drossel></div><span class="drossel-count" data-drossel-count>50%</span></div>
               </li>
           </ul>
       </div>

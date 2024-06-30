@@ -28,13 +28,21 @@
             margin: 0.5rem 0;
 
             .component-bar {
+
+                position: relative;
                 
                 div {
                     height: 100%;
                     border-radius: 1rem;
-                    color: $dark;
+                    transition: width ease-in-out 0.3s;
+                }
+
+                span {
+                    position: absolute;
+                    left: 50%;
+                    top: 50%;
+                    transform: translate(-50%, -50%);
                     font-weight: bold;
-                    text-align: center;
                 }
 
                 .filter {
@@ -50,7 +58,7 @@
                 .drossel {
                     width: 50%;
                     background-color: $warning;
-                }
+                }                
             }
         }
     }

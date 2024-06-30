@@ -2,6 +2,7 @@ import { fridgeItems } from "../utils/fridgeItems";
 import { FridgeItem } from "../utils/types";
 import ShoppingList from "./shoppingList";
 import History from "./history";
+import Service from "./service";
 
 export default class Controlles {
   private sideMenu: HTMLElement;
@@ -12,6 +13,8 @@ export default class Controlles {
   private MAXCAP: number
   private shoppingList: ShoppingList;
   private history: History;
+  private service: Service;
+
 
   constructor() {
     this.sideMenu = document.querySelector("[data-side-menu]") as HTMLElement;
@@ -23,6 +26,7 @@ export default class Controlles {
     this.MAXCAP = 120;
     this.shoppingList = new ShoppingList();
     this.history = new History();
+    this.service = new Service();
 
     this.populateList();
     this.setCapacity();
@@ -42,11 +46,19 @@ export default class Controlles {
 
   public addEventListeners() {
     const input = document.querySelector('[data-item-input]') as HTMLInputElement;
+    const itemAddBtn = document.querySelector('[data-item-add]') as HTMLButtonElement;
+    const drosselSelect = document.querySelector('[data-drossel-comp]') as HTMLSelectElement;
+    const kompressorSelect = document.querySelector('[data-kompressor-comp]') as HTMLSelectElement;
+    const filterSelect = document.querySelector('[data-filter-comp]') as HTMLSelectElement;
+
     this.openCloseTab.addEventListener("click", () => this.openClose());
-    document.querySelector('[data-item-add]')?.addEventListener("click", () => {
+    itemAddBtn.addEventListener("click", () => {
       this.addItem(input.value);
       this.history.addToFridge(input.value);
     });
+    filterSelect.addEventListener('change', () => this.service.setFilter(filterSelect.value))
+    kompressorSelect.addEventListener('change', () => this.service.setKompressor(kompressorSelect.value));
+    drosselSelect.addEventListener('change', () => this.service.setDrossel(drosselSelect.value));
   }
 
   private setCapacity() {

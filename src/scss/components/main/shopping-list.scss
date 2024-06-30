@@ -1,4 +1,27 @@
-.shopping-list-container {
-    grid-area: shopping-list;
+.shopping {
+
+    &-container {
+        overflow-y: auto;
+        overflow-x: hidden;
+        grid-area: shopping-list;
+        display: grid;
+        grid-template-areas: 
+            "title"
+            "list";
+        grid-template-rows: 1fr 3fr;
+    }
+
+    &-list-title {
+        grid-area: title;
+    }
+
+    &-list-container {
+        grid-area: list;
+    }
+
+    &-list {
+        width: 100%;
+        height: 100%;
+    }
 }
 

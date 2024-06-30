@@ -6,17 +6,18 @@
         grid-area: history;
         display: grid;
         grid-template-areas: 
-            "history-title history-title"
-            "list list";
+            "title"
+            "list";
         grid-template-rows: 1fr 3fr;
     }
 
     &-title {
-        grid-area: history-title;
+        grid-area: title;
     }
 
     &-list-container {
         grid-area: list;
+        overflow: auto;
     }
 
     &-list-item {

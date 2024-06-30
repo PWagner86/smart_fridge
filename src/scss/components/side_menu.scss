@@ -2,6 +2,7 @@
 
 .side-menu {
     --menu-width: 300px;
+    --container-margin: 0 0.5rem;
     position: absolute;
     top: 0;
     right: 100%;
@@ -32,7 +33,7 @@
     
     .item {
         &-management-container {
-            margin: 0 0.5rem;
+            margin: var(--container-margin);
         }
 
         &-in-out-container {
@@ -124,7 +125,7 @@
     }
 
     .service-management-container {
-        margin: 1rem 0.5rem;
+        margin: var(--container-margin);
 
         label {
             display: flex;
@@ -132,4 +133,89 @@
             align-items: center;
         }
     }
+
+    .connection-container {
+        margin: var(--container-margin);
+        margin-top: 1rem;
+
+        label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+
+            div {
+                --size: 2rem;
+                height: var(--size);
+                width: var(--size);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                background-color: #1b1b1b;
+                border-radius: 50%;
+                box-shadow: 0 3px 4px rgba(0,0,0,1),
+                    inset 0 -2px 5px rgba(0,0,0,1),
+                    inset 0 2px 2px rgba(255, 255, 255, 0.5),
+                    0 0 0 2px #000,
+                    0 0 0 5px #0c0c0c,
+                    0 0 0 5.5px #080808;
+    
+                input {
+                    appearance: none;
+                    height: 100%;
+                    width: 100%;
+                    position: absolute;
+                    cursor: pointer;
+    
+                    &:checked ~ i {
+                        --green-glow: #4ce238;
+                        color: $good;
+                        text-shadow: 0 0 15px var(--green-glow);
+                        color: var(--green-glow);
+                    }
+                }
+    
+                i {
+                    font-size: 1.5rem;
+                    color: #0c0c0c;
+                }
+            }
+        }
+    }
 }
+
+
+// .select-btn-wrapper{
+//     height: 8vmin;
+//     width: 8vmin;
+//     @include flex(center, center, row);
+//     position: relative;
+//     background: #1b1b1b;
+//     border-radius: 50%;
+//     box-shadow: 0 3px 4px rgba(0,0,0,1),
+//                 inset 0 -2px 5px rgba(0,0,0,1),
+//                 inset 0 2px 2px rgba(255, 255, 255, 0.5),
+//                 0 0 0 2px #000,
+//                 0 0 0 5px #0c0c0c,
+//                 0 0 0 5.5px #080808;
+    
+//     .select-btn{
+//         appearance: none;
+//         height: 100%;
+//         width: 100%;
+//         position: absolute;
+//         cursor: pointer;
+//     }
+
+//     i{
+//         font-size: 4vmin;
+//         color: #0c0c0c;
+//     }
+
+//     .select-btn:checked ~ i{
+//         color: #00ffe7;
+//         text-shadow: 0 0 15px #00a1ff,
+//                      0 0 30px #00a1ff;
+//     }        
+// }

@@ -50,15 +50,35 @@ export default class Controlles {
     const drosselSelect = document.querySelector('[data-drossel-comp]') as HTMLSelectElement;
     const kompressorSelect = document.querySelector('[data-kompressor-comp]') as HTMLSelectElement;
     const filterSelect = document.querySelector('[data-filter-comp]') as HTMLSelectElement;
+    const freezerBtn = document.querySelector('[data-freezer-btn]') as HTMLInputElement;
+    const fridgeBtn = document.querySelector('[data-fridge-btn]') as HTMLInputElement;
+    const freezerStatus = document.querySelector('[data-freezer-status]') as HTMLSpanElement;
+    const fridgeStatus = document.querySelector('[data-fridge-status]') as HTMLSpanElement;
+    const freezerTemp = document.querySelector('[data-freezer-temp]') as HTMLSpanElement;
+    let freezerTempNum: number = -8;
+    const fridgeTemp = document.querySelector('[data-fridge-temp]') as HTMLSpanElement;
+    let fridgeTempNum: number = 4;
+
+    freezerTemp.innerText = `${freezerTempNum}°`;
+    fridgeTemp.innerText = `${fridgeTempNum}°`;
 
     this.openCloseTab.addEventListener("click", () => this.openClose());
+
     itemAddBtn.addEventListener("click", () => {
       this.addItem(input.value);
       this.history.addToFridge(input.value);
     });
+
     filterSelect.addEventListener('change', () => this.service.setFilter(filterSelect.value))
     kompressorSelect.addEventListener('change', () => this.service.setKompressor(kompressorSelect.value));
     drosselSelect.addEventListener('change', () => this.service.setDrossel(drosselSelect.value));
+
+    freezerBtn.addEventListener('change', () => {
+      this.setOnlineOffline(freezerBtn, freezerStatus);
+    });
+    fridgeBtn.addEventListener('change', () => {
+      this.setOnlineOffline(fridgeBtn, fridgeStatus);
+    });
   }
 
   private setCapacity() {
@@ -155,5 +175,34 @@ export default class Controlles {
     li.innerHTML = `<div>${amount} x ${name}</div>`;
     li.append(addButton, removeButton);
     return li;
+  }
+
+  private setOnlineOffline(btn: HTMLInputElement, text: HTMLSpanElement) {
+    if(btn.checked == true) {
+        text.innerText = 'Online';
+        text.style.color = '#7eff7e';
+    } else {
+        text.innerText = 'Offline';
+        text.style.color = '#fc2f2f';
+    }
+  }
+
+  private setTemperature(temp: number, minTemp: number) {
+    const MAXTEMP: number = 25;
+    let interval: any;
+    interval = setInterval(() => {
+      if(temp > minTemp) {
+        temp--;
+        console.log(temp);
+        if(temp === minTemp) clearInterval(interval);
+      } else if(temp >= minTemp) {
+        temp++;
+        console.log(temp);
+        if(temp === MAXTEMP) {
+          temp = MAXTEMP;
+          clearInterval(interval);
+        }
+      }  
+    }, 1000)
   }
 }

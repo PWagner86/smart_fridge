@@ -83,7 +83,7 @@
             Freezer:
             <div>
                 <!-- Freezer: -->
-                <input type="checkbox" name="freezer" checked>
+                <input type="checkbox" name="freezer" checked data-freezer-btn>
                 <i class="fas fa-power-off"></i>
             </div>
         </label>
@@ -91,7 +91,7 @@
             Fridge:
             <div>
                 <!-- Freezer: -->
-                <input type="checkbox" name="fridge" checked>
+                <input type="checkbox" name="fridge" checked data-fridge-btn>
                 <i class="fas fa-power-off"></i>
             </div>
         </label>
@@ -109,20 +109,20 @@
               <div class="freezer-temp-info temp-info">
                 <h3>Freezer</h3>
                 <i class="fa-solid fa-temperature-half"></i>
-                <p class="temp">-8°</p>
+                <span class="temp" data-freezer-temp></span>
               </div>
               <div class="fridge-temp-info temp-info">
                 <h3>Fridge</h3>
                 <i class="fa-solid fa-temperature-half"></i>
-                <p class="temp">4°</p>
+                <span class="temp" data-fridge-temp></span>
               </div>
               <div class="fridge-status">
                   <ul class="fridge-status-list">
                       <li class="fridge-status-list-item">
-                          Freezer: <span class="good">Online</span>
+                          Freezer: <span class="good" data-freezer-status>Online</span>
                       </li>
                       <li class="fridge-status-list-item">
-                          Fridge: <span class="good">Online</span>
+                          Fridge: <span class="good" data-fridge-status>Online</span>
                       </li>
                       <li class="fridge-status-list-item" data-capacity>
                       </li>

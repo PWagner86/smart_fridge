@@ -83,4 +83,5 @@ export default class Fridge {
         this.loadFridge();
         this.animate();
     }
+
 }

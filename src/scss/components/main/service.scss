@@ -1,3 +1,57 @@
-.service-container {
-    grid-area: service;
+@use '../../utils/' as *;
+
+.service {
+
+    &-container {
+        grid-area: service;
+        display: grid;
+    }
+
+    &-status-list {
+
+        &-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 0.25rem 0;
+
+            span {
+                font-weight: bold;
+            }
+        }
+    }
+
+    &-components-list {
+
+        &-item {
+            display: grid;
+            grid-template-columns: 30% 70%;
+            margin: 0.5rem 0;
+
+            .component-bar {
+                
+                div {
+                    height: 100%;
+                    border-radius: 1rem;
+                    color: $dark;
+                    font-weight: bold;
+                    text-align: center;
+                }
+
+                .filter {
+                    width: 25%;
+                    background-color: $good;
+                }
+
+                .kompressor {
+                    width: 75%;
+                    background-color: $danger;
+                }
+
+                .drossel {
+                    width: 50%;
+                    background-color: $warning;
+                }
+            }
+        }
+    }
 }

@@ -96,10 +96,13 @@ export default class Controlles {
     const id: number = e.target.parentElement.getAttribute("data-id");
     fridgeItems[id].amount--;
     if(fridgeItems[id].amount == 0) {
-      this.shoppingList.addItem(fridgeItems[id].name);
       this.history.removeFromFridge(fridgeItems[id].name);
+      this.shoppingList.addItem(fridgeItems[id].name);
       fridgeItems.splice(id, 1);
+      this.populateList();
+      return;
     }
+    this.history.removeFromFridge(fridgeItems[id].name);
     this.populateList();
     this.setCapacity();
   }

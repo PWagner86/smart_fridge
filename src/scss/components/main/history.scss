@@ -20,6 +20,11 @@
         overflow: auto;
     }
 
+    &-list {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
     &-list-item {
         display: grid;
         grid-template-columns: repeat(2, 1fr) 2fr;

@@ -63,6 +63,8 @@ export default class Controlles {
     let freezerInterval: any;
     let fridgeInterval: any;
     const MAXTEMP: number = 25
+    const fridgeTermo = document.querySelector('[data-fridge-termo]') as HTMLElement;
+    const freezerTermo = document.querySelector('[data-freezer-termo]')as HTMLElement;
 
     this.openCloseTab.addEventListener("click", () => this.openClose());
 
@@ -82,12 +84,22 @@ export default class Controlles {
         freezerInterval = setInterval(() => {
           freezerTempNum++;
           freezerTemp.innerHTML = `${freezerTempNum}°`;
+          if(freezerTempNum >= 10) {
+            freezerTermo.style.color = '#fc2f2f';
+          } else {
+            freezerTermo.style.color = '#00a2ff';
+          }
           if(freezerTempNum === MAXTEMP) clearInterval(freezerInterval);
         }, 1000);
       } else {
         freezerInterval = setInterval(() => {
           freezerTempNum--;
           freezerTemp.innerHTML = `${freezerTempNum}°`;
+          if(freezerTempNum >= 10) {
+            freezerTermo.style.color = '#fc2f2f';
+          } else {
+            freezerTermo.style.color = '#00a2ff';
+          }
           if(freezerTempNum === FREZZER_MIN_TEMP) clearInterval(freezerInterval);
         }, 1000)
       }
@@ -99,12 +111,22 @@ export default class Controlles {
         fridgeInterval = setInterval(() => {
           fridgeTempNum++;
           fridgeTemp.innerHTML = `${fridgeTempNum}°`;
+          if(fridgeTempNum >= 10) {
+            fridgeTermo.style.color = '#fc2f2f';
+          } else {
+            fridgeTermo.style.color = '#00a2ff';
+          }
           if(fridgeTempNum === MAXTEMP) clearInterval(fridgeInterval);
         }, 1000);
       } else {
         fridgeInterval = setInterval(() => {
           fridgeTempNum--;
           fridgeTemp.innerHTML = `${fridgeTempNum}°`;
+          if(fridgeTempNum >= 10) {
+            fridgeTermo.style.color = '#fc2f2f';
+          } else {
+            fridgeTermo.style.color = '#00a2ff';
+          }
           if(fridgeTempNum === FRIDGE_MIN_TEMP) clearInterval(fridgeInterval);
         }, 1000)
       }

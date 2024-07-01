@@ -56,11 +56,13 @@ export default class Controlles {
     const fridgeStatus = document.querySelector('[data-fridge-status]') as HTMLSpanElement;
     const freezerTemp = document.querySelector('[data-freezer-temp]') as HTMLSpanElement;
     let freezerTempNum: number = -8;
+    const FREZZER_MIN_TEMP: number = -8;
     const fridgeTemp = document.querySelector('[data-fridge-temp]') as HTMLSpanElement;
     let fridgeTempNum: number = 4;
-
-    freezerTemp.innerText = `${freezerTempNum}°`;
-    fridgeTemp.innerText = `${fridgeTempNum}°`;
+    const FRIDGE_MIN_TEMP: number = 4;
+    let freezerInterval: any;
+    let fridgeInterval: any;
+    const MAXTEMP: number = 25
 
     this.openCloseTab.addEventListener("click", () => this.openClose());
 
@@ -74,10 +76,38 @@ export default class Controlles {
     drosselSelect.addEventListener('change', () => this.service.setDrossel(drosselSelect.value));
 
     freezerBtn.addEventListener('change', () => {
+      clearInterval(freezerInterval);
       this.setOnlineOffline(freezerBtn, freezerStatus);
+      if(!freezerBtn.checked) {
+        freezerInterval = setInterval(() => {
+          freezerTempNum++;
+          freezerTemp.innerHTML = `${freezerTempNum}°`;
+          if(freezerTempNum === MAXTEMP) clearInterval(freezerInterval);
+        }, 1000);
+      } else {
+        freezerInterval = setInterval(() => {
+          freezerTempNum--;
+          freezerTemp.innerHTML = `${freezerTempNum}°`;
+          if(freezerTempNum === FREZZER_MIN_TEMP) clearInterval(freezerInterval);
+        }, 1000)
+      }
     });
     fridgeBtn.addEventListener('change', () => {
+      clearInterval(fridgeInterval);
       this.setOnlineOffline(fridgeBtn, fridgeStatus);
+      if(!fridgeBtn.checked) {
+        fridgeInterval = setInterval(() => {
+          fridgeTempNum++;
+          fridgeTemp.innerHTML = `${fridgeTempNum}°`;
+          if(fridgeTempNum === MAXTEMP) clearInterval(fridgeInterval);
+        }, 1000);
+      } else {
+        fridgeInterval = setInterval(() => {
+          fridgeTempNum--;
+          fridgeTemp.innerHTML = `${fridgeTempNum}°`;
+          if(fridgeTempNum === FRIDGE_MIN_TEMP) clearInterval(fridgeInterval);
+        }, 1000)
+      }
     });
   }
 
@@ -185,24 +215,5 @@ export default class Controlles {
         text.innerText = 'Offline';
         text.style.color = '#fc2f2f';
     }
-  }
-
-  private setTemperature(temp: number, minTemp: number) {
-    const MAXTEMP: number = 25;
-    let interval: any;
-    interval = setInterval(() => {
-      if(temp > minTemp) {
-        temp--;
-        console.log(temp);
-        if(temp === minTemp) clearInterval(interval);
-      } else if(temp >= minTemp) {
-        temp++;
-        console.log(temp);
-        if(temp === MAXTEMP) {
-          temp = MAXTEMP;
-          clearInterval(interval);
-        }
-      }  
-    }, 1000)
   }
 }

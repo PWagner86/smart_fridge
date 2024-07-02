@@ -47,9 +47,18 @@ export default class Controlles {
   public addEventListeners() {
     const input = document.querySelector('[data-item-input]') as HTMLInputElement;
     const itemAddBtn = document.querySelector('[data-item-add]') as HTMLButtonElement;
+
     const drosselSelect = document.querySelector('[data-drossel-comp]') as HTMLSelectElement;
     const kompressorSelect = document.querySelector('[data-kompressor-comp]') as HTMLSelectElement;
     const filterSelect = document.querySelector('[data-filter-comp]') as HTMLSelectElement;
+    
+    const filter = document.querySelector('[data-filter]') as HTMLDivElement;
+    const filterCount = document.querySelector('[data-filter-count]') as HTMLSpanElement;
+    const kompressor = document.querySelector('[data-kompressor]') as HTMLDivElement;
+    const kompressorCount = document.querySelector('[data-kompressor-count]') as HTMLSpanElement;
+    const drossel = document.querySelector('[data-drossel]') as HTMLDivElement;
+    const drosselCount = document.querySelector('[data-drossel-count]') as HTMLSpanElement;
+    
     const freezerBtn = document.querySelector('[data-freezer-btn]') as HTMLInputElement;
     const fridgeBtn = document.querySelector('[data-fridge-btn]') as HTMLInputElement;
     const freezerStatus = document.querySelector('[data-freezer-status]') as HTMLSpanElement;
@@ -73,9 +82,9 @@ export default class Controlles {
       this.history.addToFridge(input.value);
     });
 
-    filterSelect.addEventListener('change', () => this.service.setFilter(filterSelect.value))
-    kompressorSelect.addEventListener('change', () => this.service.setKompressor(kompressorSelect.value));
-    drosselSelect.addEventListener('change', () => this.service.setDrossel(drosselSelect.value));
+    filterSelect.addEventListener('change', () => this.service.setComponent(filter, filterCount, filterSelect.value));
+    kompressorSelect.addEventListener('change', () => this.service.setComponent(kompressor, kompressorCount, kompressorSelect.value));
+    drosselSelect.addEventListener('change', () => this.service.setComponent(drossel, drosselCount, drosselSelect.value));
 
     freezerBtn.addEventListener('change', () => {
       clearInterval(freezerInterval);

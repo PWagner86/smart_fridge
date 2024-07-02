@@ -15,6 +15,35 @@ export default class Controlles {
   private history: History;
   private service: Service;
 
+  private input: HTMLInputElement;
+  private itemAddBtn: HTMLButtonElement;
+
+  private drosselSelect: HTMLSelectElement;
+  private kompressorSelect: HTMLSelectElement;
+  private filterSelect: HTMLSelectElement;
+  
+  private filter: HTMLDivElement;
+  private filterCount: HTMLSpanElement;
+  private kompressor: HTMLDivElement;
+  private kompressorCount: HTMLSpanElement;
+  private drossel: HTMLDivElement;
+  private drosselCount: HTMLSpanElement;
+  
+  private freezerBtn: HTMLInputElement;
+  private fridgeBtn: HTMLInputElement;
+  private freezerStatus: HTMLSpanElement;
+  private fridgeStatus: HTMLSpanElement;
+  private freezerTemp: HTMLSpanElement;
+  private freezerTempNum: number;
+  private FREZZER_MIN_TEMP: number;
+  private fridgeTemp: HTMLSpanElement;
+  private fridgeTempNum : number;
+  private FRIDGE_MIN_TEMP: number;
+  private freezerInterval: any;
+  private fridgeInterval: any;
+  private MAXTEMP: number;
+  private fridgeTermo: HTMLElement;
+  private freezerTermo: HTMLElement;
 
   constructor() {
     this.sideMenu = document.querySelector("[data-side-menu]") as HTMLElement;
@@ -27,6 +56,33 @@ export default class Controlles {
     this.shoppingList = new ShoppingList();
     this.history = new History();
     this.service = new Service();
+    this.input = document.querySelector('[data-item-input]') as HTMLInputElement;
+    this.itemAddBtn = document.querySelector('[data-item-add]') as HTMLButtonElement;
+
+    this.drosselSelect = document.querySelector('[data-drossel-comp]') as HTMLSelectElement;
+    this.kompressorSelect = document.querySelector('[data-kompressor-comp]') as HTMLSelectElement;
+    this.filterSelect = document.querySelector('[data-filter-comp]') as HTMLSelectElement;
+    
+    this.filter = document.querySelector('[data-filter]') as HTMLDivElement;
+    this.filterCount = document.querySelector('[data-filter-count]') as HTMLSpanElement;
+    this.kompressor = document.querySelector('[data-kompressor]') as HTMLDivElement;
+    this.kompressorCount = document.querySelector('[data-kompressor-count]') as HTMLSpanElement;
+    this.drossel = document.querySelector('[data-drossel]') as HTMLDivElement;
+    this.drosselCount = document.querySelector('[data-drossel-count]') as HTMLSpanElement;
+    
+    this.freezerBtn = document.querySelector('[data-freezer-btn]') as HTMLInputElement;
+    this.fridgeBtn = document.querySelector('[data-fridge-btn]') as HTMLInputElement;
+    this.freezerStatus = document.querySelector('[data-freezer-status]') as HTMLSpanElement;
+    this.fridgeStatus = document.querySelector('[data-fridge-status]') as HTMLSpanElement;
+    this.freezerTemp = document.querySelector('[data-freezer-temp]') as HTMLSpanElement;
+    this.freezerTempNum = -8;
+    this.FREZZER_MIN_TEMP = -8;
+    this.fridgeTemp = document.querySelector('[data-fridge-temp]') as HTMLSpanElement;
+    this.fridgeTempNum = 4;
+    this.FRIDGE_MIN_TEMP = 4;
+    this.MAXTEMP = 25
+    this.fridgeTermo = document.querySelector('[data-fridge-termo]') as HTMLElement;
+    this.freezerTermo = document.querySelector('[data-freezer-termo]')as HTMLElement;
 
     this.populateList();
     this.setCapacity();
@@ -45,98 +101,68 @@ export default class Controlles {
   }
 
   public addEventListeners() {
-    const input = document.querySelector('[data-item-input]') as HTMLInputElement;
-    const itemAddBtn = document.querySelector('[data-item-add]') as HTMLButtonElement;
-
-    const drosselSelect = document.querySelector('[data-drossel-comp]') as HTMLSelectElement;
-    const kompressorSelect = document.querySelector('[data-kompressor-comp]') as HTMLSelectElement;
-    const filterSelect = document.querySelector('[data-filter-comp]') as HTMLSelectElement;
-    
-    const filter = document.querySelector('[data-filter]') as HTMLDivElement;
-    const filterCount = document.querySelector('[data-filter-count]') as HTMLSpanElement;
-    const kompressor = document.querySelector('[data-kompressor]') as HTMLDivElement;
-    const kompressorCount = document.querySelector('[data-kompressor-count]') as HTMLSpanElement;
-    const drossel = document.querySelector('[data-drossel]') as HTMLDivElement;
-    const drosselCount = document.querySelector('[data-drossel-count]') as HTMLSpanElement;
-    
-    const freezerBtn = document.querySelector('[data-freezer-btn]') as HTMLInputElement;
-    const fridgeBtn = document.querySelector('[data-fridge-btn]') as HTMLInputElement;
-    const freezerStatus = document.querySelector('[data-freezer-status]') as HTMLSpanElement;
-    const fridgeStatus = document.querySelector('[data-fridge-status]') as HTMLSpanElement;
-    const freezerTemp = document.querySelector('[data-freezer-temp]') as HTMLSpanElement;
-    let freezerTempNum: number = -8;
-    const FREZZER_MIN_TEMP: number = -8;
-    const fridgeTemp = document.querySelector('[data-fridge-temp]') as HTMLSpanElement;
-    let fridgeTempNum: number = 4;
-    const FRIDGE_MIN_TEMP: number = 4;
-    let freezerInterval: any;
-    let fridgeInterval: any;
-    const MAXTEMP: number = 25
-    const fridgeTermo = document.querySelector('[data-fridge-termo]') as HTMLElement;
-    const freezerTermo = document.querySelector('[data-freezer-termo]')as HTMLElement;
-
     this.openCloseTab.addEventListener("click", () => this.openClose());
 
-    itemAddBtn.addEventListener("click", () => {
-      this.addItem(input.value);
-      this.history.addToFridge(input.value);
+    this.itemAddBtn.addEventListener("click", () => {
+      this.addItem(this.input.value);
+      this.history.addToFridge(this.input.value);
     });
 
-    filterSelect.addEventListener('change', () => this.service.setComponent(filter, filterCount, filterSelect.value));
-    kompressorSelect.addEventListener('change', () => this.service.setComponent(kompressor, kompressorCount, kompressorSelect.value));
-    drosselSelect.addEventListener('change', () => this.service.setComponent(drossel, drosselCount, drosselSelect.value));
+    this.filterSelect.addEventListener('change', () => this.service.setComponent(this.filter, this.filterCount, this.filterSelect.value));
+    this.kompressorSelect.addEventListener('change', () => this.service.setComponent(this.kompressor, this.kompressorCount, this.kompressorSelect.value));
+    this.drosselSelect.addEventListener('change', () => this.service.setComponent(this.drossel, this.drosselCount, this.drosselSelect.value));
 
-    freezerBtn.addEventListener('change', () => {
-      clearInterval(freezerInterval);
-      this.setOnlineOffline(freezerBtn, freezerStatus);
-      if(!freezerBtn.checked) {
-        freezerInterval = setInterval(() => {
-          freezerTempNum++;
-          freezerTemp.innerHTML = `${freezerTempNum}°`;
-          if(freezerTempNum >= 10) {
-            freezerTermo.style.color = '#fc2f2f';
+    this.freezerBtn.addEventListener('change', () => {
+      clearInterval(this.freezerInterval);
+      this.setOnlineOffline(this.freezerBtn, this.freezerStatus);
+      if(!this.freezerBtn.checked) {
+        this.freezerInterval = setInterval(() => {
+          this.freezerTempNum++;
+          this.freezerTemp.innerHTML = `${this.freezerTempNum}°`;
+          if(this.freezerTempNum >= 10) {
+            this.freezerTermo.style.color = '#fc2f2f';
           } else {
-            freezerTermo.style.color = '#00a2ff';
+            this.freezerTermo.style.color = '#00a2ff';
           }
-          if(freezerTempNum === MAXTEMP) clearInterval(freezerInterval);
+          if(this.freezerTempNum === this.MAXTEMP) clearInterval(this.freezerInterval);
         }, 1000);
       } else {
-        freezerInterval = setInterval(() => {
-          freezerTempNum--;
-          freezerTemp.innerHTML = `${freezerTempNum}°`;
-          if(freezerTempNum >= 10) {
-            freezerTermo.style.color = '#fc2f2f';
+        this.freezerInterval = setInterval(() => {
+          this.freezerTempNum--;
+          this.freezerTemp.innerHTML = `${this.freezerTempNum}°`;
+          if(this.freezerTempNum >= 10) {
+            this.freezerTermo.style.color = '#fc2f2f';
           } else {
-            freezerTermo.style.color = '#00a2ff';
+            this.freezerTermo.style.color = '#00a2ff';
           }
-          if(freezerTempNum === FREZZER_MIN_TEMP) clearInterval(freezerInterval);
+          if(this.freezerTempNum === this.FREZZER_MIN_TEMP) clearInterval(this.freezerInterval);
         }, 1000)
       }
     });
-    fridgeBtn.addEventListener('change', () => {
-      clearInterval(fridgeInterval);
-      this.setOnlineOffline(fridgeBtn, fridgeStatus);
-      if(!fridgeBtn.checked) {
-        fridgeInterval = setInterval(() => {
-          fridgeTempNum++;
-          fridgeTemp.innerHTML = `${fridgeTempNum}°`;
-          if(fridgeTempNum >= 10) {
-            fridgeTermo.style.color = '#fc2f2f';
+    this.fridgeBtn.addEventListener('change', () => {
+      clearInterval(this.fridgeInterval);
+      this.setOnlineOffline(this.fridgeBtn, this.fridgeStatus);
+      if(!this.fridgeBtn.checked) {
+        this.fridgeInterval = setInterval(() => {
+          this.fridgeTempNum++;
+          this.fridgeTemp.innerHTML = `${this.fridgeTempNum}°`;
+          if(this.fridgeTempNum >= 10) {
+            this.fridgeTermo.style.color = '#fc2f2f';
           } else {
-            fridgeTermo.style.color = '#00a2ff';
+            this.fridgeTermo.style.color = '#00a2ff';
           }
-          if(fridgeTempNum === MAXTEMP) clearInterval(fridgeInterval);
+          if(this.fridgeTempNum === this.MAXTEMP) clearInterval(this.fridgeInterval);
         }, 1000);
       } else {
-        fridgeInterval = setInterval(() => {
-          fridgeTempNum--;
-          fridgeTemp.innerHTML = `${fridgeTempNum}°`;
-          if(fridgeTempNum >= 10) {
-            fridgeTermo.style.color = '#fc2f2f';
+        this.fridgeInterval = setInterval(() => {
+          this.fridgeTempNum--;
+          this.fridgeTemp.innerHTML = `${this.fridgeTempNum}°`;
+          if(this.fridgeTempNum >= 10) {
+            this.fridgeTermo.style.color = '#fc2f2f';
           } else {
-            fridgeTermo.style.color = '#00a2ff';
+            this.fridgeTermo.style.color = '#00a2ff';
           }
-          if(fridgeTempNum === FRIDGE_MIN_TEMP) clearInterval(fridgeInterval);
+          if(this.fridgeTempNum === this.FRIDGE_MIN_TEMP) clearInterval(this.fridgeInterval);
         }, 1000)
       }
     });

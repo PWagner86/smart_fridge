@@ -50,7 +50,7 @@ export default class Fridge {
 
     private loadFridge() {
         this.loader.load(
-            '/fridge_model/Kitchen_Fridge.obj',
+            'fridge_model/Kitchen_Fridge.obj',
             (object) => {
                 object.position.set(0, -1.6, 0);
                 object.rotateY(Math.PI / 7)

@@ -9,7 +9,7 @@ export default class Fridge {
     private renderer: THREE.WebGLRenderer;
     private screen: HTMLDivElement;
     private loader: OBJLoader;
-    private controls: OrbitControls;
+    private orbitControls: OrbitControls;
     private hemiLight: THREE.HemisphereLight;
     private dirLight: THREE.DirectionalLight;
 
@@ -34,7 +34,7 @@ export default class Fridge {
 
         this.screen.append(this.renderer.domElement);
 
-        this.controls = new OrbitControls(this.camera, this.renderer.domElement)
+        this.orbitControls = new OrbitControls(this.camera, this.renderer.domElement)
 
         this.loader = new OBJLoader();
 
@@ -72,7 +72,7 @@ export default class Fridge {
     private animate() {
         
         requestAnimationFrame(() => {
-            this.controls.update();
+            this.orbitControls.update();
             this.renderer.render( this.scene, this.camera );
             this.animate();
         });

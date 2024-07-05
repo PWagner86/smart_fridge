@@ -1,12 +1,12 @@
 import Clock from "./clock";
-import Controlles from "./controlles";
+import Controls from "./controls";
 import Weather from "./weather";
 import Fridge from "./fridge";
 
 export default class Manager {
 
     private clock: Clock;
-    private controlles : Controlles;
+    private controls : Controls;
     private weather: Weather;
     private fridge: Fridge;
 
@@ -18,7 +18,7 @@ export default class Manager {
         ) {
 
         this.clock = new Clock();
-        this.controlles = new Controlles();
+        this.controls = new Controls();
         this.weather = new Weather();
         this.fridge = new Fridge();
     }
@@ -27,7 +27,7 @@ export default class Manager {
         console.log('SmartFridge started...');
         this.clock.showDate(this.clockText, this.dateText);
         this.weather.setWeatherIcon();
-        this.controlles.addEventListeners();
+        this.controls.addEventListeners();
         this.fridge.initFridge();
     }
 }

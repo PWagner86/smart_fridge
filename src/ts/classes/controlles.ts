@@ -207,6 +207,7 @@ export default class Controlles {
       this.shoppingList.addItem(fridgeItems[id].name);
       fridgeItems.splice(id, 1);
       this.populateList();
+      this.setCapacity();
       return;
     }
     this.history.removeFromFridge(fridgeItems[id].name);

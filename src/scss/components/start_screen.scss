@@ -4,6 +4,7 @@
 
     &-screen {
         --size: 8rem;
+        --animate: opacity ease-in-out 0.5s;
         position: absolute;
         top: 0;
         left: 0;
@@ -14,6 +15,28 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        transition: var(--animate);
+    }
+
+    &-title-container {
+        position: absolute;
+        text-align: center;
+        width: 100%;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        z-index: -1;
+
+        span {
+            font-size: 6rem;
+            padding: 0 1rem;
+            opacity: 0;
+            transition: var(--animate);
+        }
+
+        .show {
+            opacity: 1;;
+        }
     }
 
     &-button {
@@ -26,6 +49,7 @@
         font-size: 2rem;
         font-weight: bold;
         cursor: pointer;
+        transition: var(--animate);
     }
 
     &-drop {
@@ -38,9 +62,18 @@
         border-radius: 50%;
         z-index: -1;
         box-shadow: 0 0 2rem 3rem $good;
-        transition: ease-in-out 2s;
+        transition: var(--animate);
         animation: grow 2.5s infinite ease-out;
     }
+
+    &-vanish {
+        opacity: 0;
+    }
+
+    &-none {
+        display: none;
+    }
+
 }
 
 @keyframes grow {

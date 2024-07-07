@@ -6,8 +6,8 @@
     width: 900px;
     display: grid;
     grid-template-areas: 
-        "fridge-status fridge-status shopping-list news"
-        "fridge-status fridge-status service service"
+        "fridge-status fridge-status shopping-list info"
+        "fridge-status fridge-status shopping-list info"
         "fridge-status fridge-status service service"
         "history history recipe app-store"
         "history history recipe app-store";

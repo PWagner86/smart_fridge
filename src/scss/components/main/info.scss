@@ -1,0 +1,8 @@
+.info{
+
+    &-container {
+        grid-area: info;
+        display: grid;
+        grid-template-rows: repeat(4, 1fr);
+    }
+}

@@ -1,8 +1,6 @@
 .shopping {
 
     &-container {
-        overflow-y: auto;
-        overflow-x: hidden;
         grid-area: shopping-list;
         display: grid;
         grid-template-areas: 
@@ -15,13 +13,11 @@
         grid-area: title;
     }
 
-    &-list-container {
-        grid-area: list;
-    }
-
     &-list {
+        grid-area: list;
         width: 100%;
         height: 100%;
+        overflow: auto;
     }
 }
 

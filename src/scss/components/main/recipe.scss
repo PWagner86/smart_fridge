@@ -1,3 +1,20 @@
-.recipe-container {
-    grid-area: recipe;
+.recipe {
+
+    &-container {
+        grid-area: recipe;
+        display: grid;
+        grid-template-rows: 30% 70%;
+    }
+
+    &-list {
+        
+        li {
+            padding: 0.5rem 0;
+            transition: font-weight ease-in-out 0.1s;
+
+            &:hover {
+                font-weight: bold;
+            }
+        }
+    }
 }

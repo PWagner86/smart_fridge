@@ -51,3 +51,7 @@ Wenn alles erfolgreich ist, solltest du eine Ausgabe sehen, die dir mitteilt, da
 ```
 
 Öffne nun deinen Webbrowser und gehe zu http://localhost:3000/. Dein Vite.js-Projekt sollte jetzt in der Entwicklungsumgebung laufen.
+
+### 5. Weitere Informationen
+
+https://school-2.stfw.ch/pwagner/SmartFridge/wiki/?action=_pages

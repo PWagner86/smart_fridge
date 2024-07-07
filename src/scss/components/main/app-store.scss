@@ -1,3 +1,32 @@
-.app-store-container {
-    grid-area: app-store;
+@use '../../utils/variables.scss' as *;
+
+.app {
+
+    &-store-container {
+        grid-area: app-store;
+        display: grid;
+        grid-template-rows: 30% 70%;
+    }
+
+    &-list {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+        gap: 0.25rem;
+
+        &-item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: $medium;
+            border: solid 1px $light;
+            border-radius: 0.25rem;
+
+            img {
+                display: block;
+                height: 1.75rem;
+                width: auto;
+            }
+        }
+    }
 }

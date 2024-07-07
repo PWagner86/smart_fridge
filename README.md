@@ -46,11 +46,11 @@ Wenn alles erfolgreich ist, solltest du eine Ausgabe sehen, die dir mitteilt, da
 ```sh
   VITE vX.X.X  ready in X ms
 
-  ➜  Local:   http://localhost:3000/
+  ➜  Local:   http://localhost:5173/
   ➜  Network: use --host to expose
 ```
 
-Öffne nun deinen Webbrowser und gehe zu http://localhost:3000/. Dein Vite.js-Projekt sollte jetzt in der Entwicklungsumgebung laufen.
+Öffne nun deinen Webbrowser und gehe zu http://localhost:5173/. Dein Vite.js-Projekt sollte jetzt in der Entwicklungsumgebung laufen.
 
 ### 5. Weitere Informationen
 

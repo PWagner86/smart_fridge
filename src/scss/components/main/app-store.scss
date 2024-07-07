@@ -5,7 +5,7 @@
     &-store-container {
         grid-area: app-store;
         display: grid;
-        grid-template-rows: 30% 70%;
+        grid-template-rows: 20% 80%;
     }
 
     &-list {
@@ -19,8 +19,14 @@
             justify-content: center;
             align-items: center;
             background-color: $medium;
-            border: solid 1px $light;
+            border: solid 2px $light;
             border-radius: 0.25rem;
+            transition: border-color ease-in-out 0.3s;
+            cursor: pointer;
+
+            &:hover {
+                border-color: $cool;
+            }
 
             img {
                 display: block;

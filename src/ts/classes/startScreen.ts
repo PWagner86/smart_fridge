@@ -8,7 +8,6 @@ export default class Startscreen {
         this.startScreen = document.querySelector('[data-start-screen]') as HTMLDivElement;
         this.startSound = document.querySelector('[data-start-up-sound]') as HTMLAudioElement;
         this.letters = [...document.querySelectorAll('[data-start-letter]')] as Array<HTMLSpanElement>;
-        console.log(this.letters);
     }
     
     public startProgramme( btn: HTMLButtonElement, drop: HTMLDivElement) {
@@ -36,7 +35,6 @@ export default class Startscreen {
             }, interval)
             interval += 350;
         }
-        console.log(interval);
     }
 
     private vanishScreen() {

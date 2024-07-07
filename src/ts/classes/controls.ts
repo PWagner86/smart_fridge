@@ -5,6 +5,10 @@ import History from "./history";
 import Service from "./service";
 
 export default class Controlles {
+  private doorSound: HTMLAudioElement;
+  private fridgeSound: HTMLAudioElement;
+  private powerDown: HTMLAudioElement;
+
   private sideMenu: HTMLElement;
   private openCloseTab: HTMLDivElement;
   private uList: HTMLUListElement;
@@ -46,6 +50,10 @@ export default class Controlles {
   private freezerTermo: HTMLElement;
 
   constructor() {
+    this.doorSound = document.querySelector('[data-door-open-sound]') as HTMLAudioElement;
+    this.fridgeSound = document.querySelector('[data-fridge-sound]') as HTMLAudioElement;
+    this.powerDown = document.querySelector('[data-power-down-sound]') as HTMLAudioElement;
+
     this.sideMenu = document.querySelector("[data-side-menu]") as HTMLElement;
     this.openCloseTab = document.querySelector("[data-side-menu-open-close-tab]") as HTMLDivElement;
     this.uList = document.querySelector("[data-item-list]") as HTMLUListElement;
@@ -104,6 +112,7 @@ export default class Controlles {
     this.openCloseTab.addEventListener("click", () => this.openClose());
 
     this.itemAddBtn.addEventListener("click", () => {
+      this.doorSound.play();
       this.addItem(this.input.value);
       this.history.addToFridge(this.input.value);
     });
@@ -193,6 +202,7 @@ export default class Controlles {
     if(count === this.MAXCAP){
       return;
     }
+    this.doorSound.play();
     fridgeItems[id].amount++;
     this.populateList();
     this.history.addToFridge(fridgeItems[id].name);
@@ -267,9 +277,13 @@ export default class Controlles {
 
   private setOnlineOffline(btn: HTMLInputElement, text: HTMLSpanElement) {
     if(btn.checked == true) {
+        this.fridgeSound.play();
+        this.powerDown.pause();
         text.innerText = 'Online';
         text.style.color = '#7eff7e';
     } else {
+        this.powerDown.play();
+        this.fridgeSound.pause();
         text.innerText = 'Offline';
         text.style.color = '#fc2f2f';
     }

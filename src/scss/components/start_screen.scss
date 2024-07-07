@@ -50,6 +50,11 @@
         font-weight: bold;
         cursor: pointer;
         transition: var(--animate);
+        transition: text-shadow ease-in-out 0.3s;
+
+        &:hover {
+            text-shadow: 0 0 0.5rem $good;
+        }
     }
 
     &-drop {

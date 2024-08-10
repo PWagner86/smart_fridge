@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>SmartFridge</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <script type="module" crossorigin src="/assets/index-CYs4dXGZ.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-DId7dLmO.css">
+</head>
+<body>
+
+	<audio src="/sounds/start_up.wav" data-start-up-sound></audio>
+	<audio src="/sounds/door_open.wav" data-door-open-sound></audio>
+	<audio src="/sounds/fridge_sound.wav" data-fridge-sound></audio>
+	<audio src="/sounds/power_down.wav" data-power-down-sound></audio>
+
+	<div class="start-screen" data-start-screen>
+		<div class="start-title-container" data-start-title-container>
+			<span data-start-letter>S</span>
+			<span data-start-letter>M</span>
+			<span data-start-letter>A</span>
+			<span data-start-letter>R</span>
+			<span data-start-letter>T</span>
+			<span data-start-letter>F</span>
+			<span data-start-letter>R</span>
+			<span data-start-letter>I</span>
+			<span data-start-letter>D</span>
+			<span data-start-letter>G</span>
+			<span data-start-letter>E</span>
+		</div>
+		<button class="start-button" data-start-button>START</button>
+		<div class="start-drop" data-start-drop></div>
+	</div>
+
+    <!-- To cover side-menu in case of wide screen -->
+    <div class="cover"></div>
+    
+    <!-- Header --------------------------------------------------------------->
+    <header class="header">
+
+      <!-- Title ------------------------------------------------------------>
+		<div class="header-title-container">
+				<div class="header-title">
+					<h1>SMARTFRIDGE</h1>
+				</div>
+				<div class="header-logo">
+					<i class="fa-regular fa-snowflake"></i>
+				</div>
+		</div>
+
+		<!-- Zeit und Datum --------------------------------------------------->
+		<div class="header-time-container">
+			<h2 class="time" data-time></h2>
+			<h2 class="date" data-date></h2>
+		</div>
+
+		<!-- Wetter ----------------------------------------------------------->
+		<div class="header-weather-container" data-weather-container>
+			<h2>loading...</h2>
+		</div>
+	</header>
+
+  <!-- Side-Menu ----------------------------------------------------------------->
+  <nav class="side-menu" data-side-menu>
+    <div class="side-menu-open-close-tab" data-side-menu-open-close-tab>Open</div>
+    <div class="item-management-container">
+        <div class="item-in-out-container">
+            <input class="item-input" type="text" placeholder="Item eingeben" data-item-input>
+            <button class="item-add item-button" data-item-add>Hinzufügen</button>
+            <ul class="item-list" data-item-list>
+            </ul>
+        </div>
+    </div>
+    <div class="service-management-container">
+        <label for="filter-comp">
+            Filter:
+            <select name="filter-comp" data-filter-comp data-comp-name="Filter">
+                <option value="0">0%</option>
+                <option value="25" selected>25%</option>
+                <option value="50">50%</option>
+                <option value="75">75%</option>
+                <option value="100">100%</option>
+            </select>
+        </label>
+        <label for="kompressor-comp">
+            Kompressor:
+            <select name="kompressor-comp" data-kompressor-comp data-comp-name="Kompressor">
+                <option value="0">0%</option>
+                <option value="25">25%</option>
+                <option value="50">50%</option>
+                <option value="75" selected>75%</option>
+                <option value="100">100%</option>
+            </select>
+        </label>
+        <label for="drossel-comp">
+            Drossel:
+            <select name="drossel-comp" data-drossel-comp data-comp-name="Drossel">
+                <option value="0">0%</option>
+                <option value="25">25%</option>
+                <option value="50" selected>50%</option>
+                <option value="75">75%</option>
+                <option value="100">100%</option>
+            </select>
+        </label>
+    </div>
+    <div class="connection-container">
+        <label for="freezer">
+            Freezer:
+            <div>
+                <!-- Freezer: -->
+                <input type="checkbox" name="freezer" checked data-freezer-btn>
+                <i class="fas fa-power-off"></i>
+            </div>
+        </label>
+        <label for="fridge">
+            Fridge:
+            <div>
+                <!-- Freezer: -->
+                <input type="checkbox" name="fridge" checked data-fridge-btn>
+                <i class="fas fa-power-off"></i>
+            </div>
+        </label>
+    </div>
+
+  </nav>
+
+  <!-- Main ----------------------------------------------------------------->
+  <main class="main">
+
+		<!-- Frigde-Status ---------------------------------------------------->
+		<div class="fridge main-frame">
+			<div class="fridge-screen" data-fridge-screen></div>
+			<div class="fridge-temp">
+				<div class="freezer-temp-info temp-info">
+					<h3>Freezer</h3>
+					<i class="fa-solid fa-temperature-half" data-freezer-termo></i>
+					<span class="temp" data-freezer-temp>-8°</span>
+				</div>
+				<div class="fridge-temp-info temp-info">
+					<h3>Fridge</h3>
+					<i class="fa-solid fa-temperature-half" data-fridge-termo></i>
+					<span class="temp" data-fridge-temp>4°</span>
+				</div>
+				<div class="fridge-status">
+					<ul class="fridge-status-list">
+						<li class="fridge-status-list-item">
+							Freezer: <span class="good" data-freezer-status>Online</span>
+						</li>
+						<li class="fridge-status-list-item" >
+							Fridge: <span class="good" data-fridge-status>Online</span>
+						</li>
+						<li class="fridge-status-list-item" data-capacity>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<!-- Shopping-Liste ---------------------------------------------------->
+		<div class="shopping-container main-frame">
+			<h2 class="shopping-list-title">Shopping-List</h2>
+			<ul class="shopping-list" data-shopping-list>
+			</ul>  
+		</div>    
+
+		<!-- Info -------------------------------------------------------------->
+		<div class="info-container main-frame">
+				<h2 class="info-title">Info</h2>
+				<p class="info-text">Version: <br> <b>1.176</b></p>
+				<p class="info-text">letzte Wartung: <b>29.06.2024</b></p>
+				<p class="info-text">nächste Wartung: <b>01.07.2025</b></p>
+		</div>
+
+		<!-- Service ----------------------------------------------------------->
+		<div class="service-container main-frame">
+			<h2 class="service-title">Service</h2>
+			<ul class="service-components-list">
+				<li class="service-components-list-item">
+					<span class="component-name">Filter:</span>    
+					<div class="component-bar"><div class="filter" data-filter></div><span class="filter-count" data-filter-count>25%</span></div>
+				</li>
+				<li class="service-components-list-item">
+					<span class="component-name">Kompressor:</span>    
+					<div class="component-bar"><div class="kompressor" data-kompressor></div><span class="kompressor-count" data-kompressor-count>75%</span></div>
+				</li>
+				<li class="service-components-list-item">
+					<span class="component-name">Drossel:</span>
+					<div class="component-bar"><div class="drossel" data-drossel></div><span class="drossel-count" data-drossel-count>50%</span></div>
+				</li>
+			</ul>
+		</div>
+
+		<!-- Verlauf ----------------------------------------------------------->
+		<div class="history-container main-frame">
+			<h2 class="history-title">Verlauf</h2>
+			<div class="history-list-container">
+				<ul class="history-list" data-history-list>
+				</ul>
+			</div>
+		</div>
+
+		<!-- Rezepte ----------------------------------------------------------->
+		<div class="recipe-container main-frame">
+			<h2 class="recipe-title">Rezepte</h2>
+			<ul class="recipe-list">
+				<li class="recipe-list-item"><a href="https://www.swissmilk.ch/de/rezepte-kochideen/rezepte/LM_div_1013_01/kartoffelsalat/" target="_blank" rel="noopener noreferrer">Kartoffelsalat</a></li>
+				<li class="recipe-list-item"><a href="https://www.swissmilk.ch/de/rezepte-kochideen/rezepte/LM200904_53/spaghetti-carbonara-mit-rahm/" target="_blank" rel="noopener noreferrer">Spaghetti Carbonara</a></li>
+				<li class="recipe-list-item"><a href="https://www.swissmilk.ch/de/rezepte-kochideen/rezepte/LM201412_47/feuchter-schokoladenkuchen-glutenfrei/" target="_blank" rel="noopener noreferrer">Schokoladenkuchen</a></li>
+			</ul>
+		</div>
+
+		<!-- App-Store ----------------------------------------------------------->
+		<div class="app-store-container main-frame">
+			<h2 class="app-store-title">Apps</h2>
+			<ul class="app-list">
+				<li class="app-list-item"><img src="/pics/pic_1.jpg" alt=""></li>
+				<li class="app-list-item"><img src="/pics/pic_2.jpg" alt=""></li>
+				<li class="app-list-item"><img src="/pics/pic_3.jpg" alt=""></li>
+				<li class="app-list-item"><img src="/pics/pic_4.jpg" alt=""></li>
+				<li class="app-list-item"><img src="/pics/pic_5.jpg" alt=""></li>
+				<li class="app-list-item"><img src="/pics/pic_6.jpg" alt=""></li>
+				<li class="app-list-item"><img src="/pics/pic_7.jpg" alt=""></li>
+				<li class="app-list-item"><img src="/pics/pic_8.jpg" alt=""></li>
+				<li class="app-list-item"><img src="/pics/pic_9.jpg" alt=""></li>
+				<li class="app-list-item"><img src="/pics/pic_10.jpg" alt=""></li>
+				<li class="app-list-item"><img src="/pics/pic_11.jpg" alt=""></li>
+				<li class="app-list-item"><img src="/pics/pic_12.jpg" alt=""></li>
+			</ul>
+		</div>
+
+	</main>
+
+</body>
+</html>
